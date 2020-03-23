@@ -580,8 +580,8 @@ namespace G2lib {
   class ClothoidList : public BaseCurve {
 
     bool                  curve_is_closed;
-    vector<real_type>     s0;
-    vector<ClothoidCurve> clotoidList;
+    std::vector<real_type>     s0;
+    std::vector<ClothoidCurve> clotoidList;
 
     #ifdef G2LIB_USE_CXX11
     mutable std::mutex                         lastInterval_mutex;
@@ -595,7 +595,7 @@ namespace G2lib {
     mutable real_type          aabb_offs;
     mutable real_type          aabb_max_angle;
     mutable real_type          aabb_max_size;
-    mutable vector<Triangle2D> aabb_tri;
+    mutable std::vector<Triangle2D> aabb_tri;
 
     class T2D_collision_list_ISO {
       ClothoidList const * pList1;
@@ -734,8 +734,8 @@ namespace G2lib {
       real_type                 x0,
       real_type                 y0,
       real_type                 theta0,
-      vector<real_type> const & s,
-      vector<real_type> const & kappa
+      std::vector<real_type> const & s,
+      std::vector<real_type> const & kappa
     ) {
       if ( s.size() != kappa.size() ) return false;
       return build(
@@ -1526,15 +1526,15 @@ namespace G2lib {
 
   private:
 
-    vector<real_type> x;
-    vector<real_type> y;
+    std::vector<real_type> x;
+    std::vector<real_type> y;
     TargetType        tt;
     real_type         theta_I;
     real_type         theta_F;
     int_type          npts;
 
     // work vector
-    mutable vector<real_type> k, dk, L, kL, L_1, L_2, k_1, k_2, dk_1, dk_2;
+    mutable std::vector<real_type> k, dk, L, kL, L_1, L_2, k_1, k_2, dk_1, dk_2;
 
     real_type
     diff2pi( real_type in ) const {

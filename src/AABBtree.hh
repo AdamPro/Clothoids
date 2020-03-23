@@ -98,7 +98,7 @@ namespace G2lib {
     }
 
     BBox(
-      vector<PtrBBox> const & bboxes,
+      std::vector<PtrBBox> const & bboxes,
       int_type                _id,
       int_type                _ipos
     ) {
@@ -139,7 +139,7 @@ namespace G2lib {
 
     //! Build bbox for a list of bbox
     void
-    join( vector<PtrBBox> const & bboxes );
+    join( std::vector<PtrBBox> const & bboxes );
 
     //! distance of the point `(x,y)` to the bbox
     real_type
@@ -187,14 +187,14 @@ namespace G2lib {
   #endif
 
   typedef pair<PtrBBox,PtrBBox> PairPtrBBox;
-  typedef vector<PtrBBox>       VecPtrBBox;
-  typedef vector<PairPtrBBox>   VecPairPtrBBox;
+  typedef std::vector<PtrBBox>       VecPtrBBox;
+  typedef std::vector<PairPtrBBox>   VecPairPtrBBox;
 
   private:
 
     // bbox of the tree
     PtrBBox         pBBox;
-    vector<PtrAABB> children;
+    std::vector<PtrAABB> children;
 
     AABBtree( AABBtree const & tree );
 
@@ -256,7 +256,7 @@ namespace G2lib {
 
     //! build AABB tree given a list of bbox
     void
-    build( vector<PtrBBox> const & bboxes );
+    build( std::vector<PtrBBox> const & bboxes );
 
     void
     print( ostream_type & stream, int level = 0 ) const;
@@ -289,14 +289,14 @@ namespace G2lib {
         if ( swap_tree ) return ifun( tree.pBBox, pBBox );
         else             return ifun( pBBox, tree.pBBox );
       case 1: // first is a tree, second is a leaf
-        { typename vector<PtrAABB>::const_iterator it;
+        { typename std::vector<PtrAABB>::const_iterator it;
           for ( it = children.begin(); it != children.end(); ++it )
             if ( tree.collision( **it, ifun, !swap_tree ) )
               return true;
         }
         break;
       case 2: // first leaf, second is a tree
-        { typename vector<PtrAABB>::const_iterator it;
+        { typename std::vector<PtrAABB>::const_iterator it;
           for ( it = tree.children.begin();
                 it != tree.children.end(); ++it )
             if ( this->collision( **it, ifun, swap_tree ) )
@@ -304,8 +304,8 @@ namespace G2lib {
         }
         break;
       case 3: // first is a tree, second is a tree
-        { typename vector<PtrAABB>::const_iterator c1;
-          typename vector<PtrAABB>::const_iterator c2;
+        { typename std::vector<PtrAABB>::const_iterator c1;
+          typename std::vector<PtrAABB>::const_iterator c2;
           for ( c1 = children.begin(); c1 != children.end(); ++c1 )
             for ( c2 = tree.children.begin();
                   c2 != tree.children.end(); ++c2 )

@@ -36,7 +36,7 @@ namespace G2lib {
 
   class AsyPlot {
   public:
-    AsyPlot( string filename, bool showAxes );
+    AsyPlot( std::string filename, bool showAxes );
     ~AsyPlot();
 
     void
@@ -46,8 +46,8 @@ namespace G2lib {
       real_type offset = 0
     ) const;
     
-    void dot( real_type x, real_type y, string const & penna="black" ) const;
-    void triangle(Triangle2D const & t, string const & penna="black" ) const;
+    void dot( real_type x, real_type y, std::string const & penna="black" ) const;
+    void triangle(Triangle2D const & t, std::string const & penna="black" ) const;
 
     void
     drawRect(
@@ -55,7 +55,7 @@ namespace G2lib {
       real_type x1, real_type y1,
       real_type x2, real_type y2,
       real_type x3, real_type y3,
-      string const & penna="black"
+      std::string const & penna="black"
     ) const;
 
     void
@@ -67,17 +67,17 @@ namespace G2lib {
 
     void
     label(
-      string const & text,
+      std::string const & text,
       real_type      x,
       real_type      y,
-      string const & placement = "",
-      string const & penna = "black"
+      std::string const & placement = "",
+      std::string const & penna = "black"
     ) const;
 
     void
     displayAxes(
-      string const & labX,
-      string const & labY,
+      std::string const & labX,
+      std::string const & labY,
       real_type      xmin,
       real_type      xmax,
       real_type      ymin,
@@ -86,7 +86,7 @@ namespace G2lib {
 
   private:
     mutable ofstream file;
-    string  filename;
+    std::string  filename;
     bool showAxes;
     bool openFile();
     bool closeFile();
