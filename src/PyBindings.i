@@ -1,0 +1,28 @@
+%module PyClothoids
+%{
+#include "G2lib.hh"
+#include "Triangle2D.hh"
+#include "Line.hh"
+#include "AABBtree.hh"
+#include "PolyLine.hh"
+#include "Circle.hh"
+#include "Biarc.hh"
+#include "BiarcList.hh"
+#include "Clothoid.hh"
+#include "ClothoidAsyPlot.hh"
+#include "ClothoidList.hh"
+#include "Fresnel.hh"
+%}
+
+%include "G2lib.hh"
+%include "Triangle2D.hh"
+%include "Line.hh"
+%include "AABBtree.hh"
+%include "PolyLine.hh"
+%include "Circle.hh"
+%include "Biarc.hh"
+%include "BiarcList.hh"
+%include "Clothoid.hh"
+%include "ClothoidAsyPlot.hh"
+%include "ClothoidList.hh"
+%include "Fresnel.hh"

@@ -77,6 +77,19 @@ SET( CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/lib )
 IF ( BUILD_SHARED )
   ADD_LIBRARY( ${TARGETS} STATIC ${SOURCES} ${HEADERS} )
   ADD_LIBRARY( ${TARGET}  SHARED ${SOURCES} ${HEADERS} )
+  find_package(PythonLibs REQUIRED)
+  find_package(SWIG REQUIRED)
+  INCLUDE(${SWIG_USE_FILE})
+
+  set_source_files_properties(src/PyBindings.i PROPERTIES CPLUSPLUS ON)
+  set (UseSWIG_TARGET_NAME_PREFERENCE STANDARD)
+  swig_add_library(PyClothoids LANGUAGE python SOURCES src/PyBindings.i)
+  message("PYTHON LIBS: ${PYTHON_LIBRARIES}")
+  target_link_libraries(PyClothoids ${TARGETS} ${PYTHON_LIBRARIES})
+  target_include_directories(PyClothoids PUBLIC ${PYTHON_INCLUDE_DIRS})
+  set_property(TARGET PyClothoids PROPERTY SWIG_COMPILE_OPTIONS -cpperraswarn)
+
+
   INSTALL(
     TARGETS ${TARGET} ${TARGETS}
     RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
